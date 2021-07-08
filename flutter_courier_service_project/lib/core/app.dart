@@ -9,9 +9,14 @@
 /// Copyright (c) 2021 Department of Computer Science
 
 import 'package:flutter/material.dart';
+import 'package:flutter_courier_service_project/core/theme.dart';
 import 'package:flutter_courier_service_project/welcome.dart';
 
 import 'constants.dart';
+import 'routes/routes.gr.dart';
+
+/// router
+final _appRouter = AppRouter();
 
 /// entry point of the entire application
 ///
@@ -21,16 +26,12 @@ class LaikosDeliveriesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
       title: kAppName,
-      theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.light(
-          background: Colors.white,
-        ),
-      ),
-      home: WelcomePage(),
+      theme: lightTheme(context),
     );
   }
 }
