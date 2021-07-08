@@ -10,23 +10,61 @@
 
 import 'package:flutter/material.dart';
 
-class LaikosDeliveries extends StatelessWidget {
-  // This widget is the root of your application.
-  const LaikosDeliveries({Key? key}) : super(key: key);
+import 'core/config.dart';
+
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({Key? key}) : super(key: key);
 
   @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Container(
-        height: 30,
-        width: 40,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            image: AssetImage("images/LA.jpg"),
+    // initialize app configurations
+    AppConfig.init(context);
+
+    return Scaffold(
+      body: Column(
+        children: [
+          // image
+          Container(
+            height: AppConfig.kDeviceHeight * 0.4,
+            width: AppConfig.kDeviceWidth,
+            decoration: BoxDecoration(
+              color: AppConfig.kColorScheme.background,
+              image: DecorationImage(
+                image: AssetImage("images/LA.jpg"),
+              ),
+            ),
           ),
-        ),
+
+          // button
+          GestureDetector(
+            onTap: () {
+              // todo -> send us to some other page
+            },
+            child: Container(
+              width: AppConfig.kDeviceWidth * 0.6,
+              padding: EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppConfig.kColorScheme.secondary,
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Text(
+                "Tap here",
+                style: AppConfig.kTextTheme.button?.copyWith(
+                  color: AppConfig.kColorScheme.onSecondary,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
